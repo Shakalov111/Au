@@ -39,16 +39,17 @@ def track_active_window(flag:bool):
 
 def main ():
     while True:
-
-        question = list(questions.keys())[random.randint(0,5)]
-        answer = getpass.getpass(question)
-
+        answers = []
+        for i in range(2):
+            question = list(questions.keys())[random.randint(0,5)]
+            answer = getpass.getpass(question)
+            answers.append(answer == questions[question])
         #Перевірка відповіді
-        if answer == questions[question]:
+        if answers[0] and answers[1]:
             print("Вірно")
             track_active_window(False)
         else:
-            os.system("shutdown /l /t 10")
+            os.system("shutdown /l")
             track_active_window(True)
         time.sleep(N*60)
 
